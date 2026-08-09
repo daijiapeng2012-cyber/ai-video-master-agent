@@ -6,3 +6,4 @@ scripts.
 Current examples:
 
 - `comfyui_handoff.sample.json`
+- `comfyui/execution_plan.sample.json`

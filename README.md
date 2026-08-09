@@ -160,6 +160,7 @@ Generated output example:
 - [Notion Sync Contract](./docs/en/notion-sync-contract.md)
 - [Reference Projects](./docs/en/reference-projects.md)
 - [ComfyUI Integration](./docs/en/comfyui-integration.md)
+- [Agent Orchestration for ComfyUI](./docs/en/comfyui-agent-orchestration.md)
 - [Roadmap](./docs/en/roadmap.md)
 
 Chinese mirrors:
@@ -169,6 +170,7 @@ Chinese mirrors:
 - [Notion 同步合同](./docs/zh-CN/notion-sync-contract.md)
 - [参考项目](./docs/zh-CN/reference-projects.md)
 - [ComfyUI 集成](./docs/zh-CN/comfyui-integration.md)
+- [ComfyUI Agent 编排](./docs/zh-CN/comfyui-agent-orchestration.md)
 - [路线图](./docs/zh-CN/roadmap.md)
 
 ## Open Source

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ComfyUI Agent Execution Plan",
+  "type": "object",
+  "required": [
+    "plan_id",
+    "goal",
+    "workflow_family",
+    "model_route",
+    "inputs",
+    "controls",
+    "outputs",
+    "review",
+    "retry_policy"
+  ],
+  "properties": {
+    "plan_id": { "type": "string" },
+    "goal": { "type": "string" },
+    "workflow_family": {
+      "type": "string",
+      "enum": [
+        "text_to_video_base",
+        "image_to_video_reference",
+        "character_consistency_ref",
+        "dialogue_performance_branch",
+        "clean_plate_fix",
+        "relight_pass"
+      ]
+    },
+    "model_route": {
+      "type": "object",
+      "required": ["checkpoint_family", "reason"],
+      "properties": {
+        "checkpoint_family": { "type": "string" },
+        "lora_stack": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["prompt", "references"],
+      "properties": {
+        "prompt": { "type": "string" },
+        "negative_prompt": { "type": "string" },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "role", "path_or_url"],
+            "properties": {
+              "id": { "type": "string" },
+              "role": { "type": "string" },
+              "path_or_url": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "controls": {
+      "type": "object",
+      "required": ["aspect_ratio", "duration_target", "seed_policy"],
+      "properties": {
+        "aspect_ratio": { "type": "string" },
+        "duration_target": { "type": "string" },
+        "seed_policy": { "type": "string" },
+        "control_assets": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["target_type", "expected_paths"],
+      "properties": {
+        "target_type": { "type": "string" },
+        "expected_paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "required": ["gates"],
+      "properties": {
+        "gates": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "retry_policy": {
+      "type": "object",
+      "required": ["max_retries", "change_after_first_failure"],
+      "properties": {
+        "max_retries": { "type": "integer" },
+        "change_after_first_failure": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "ability_id": "crowd_density_framing_prompt",
+    "name": "人群密度与机位先行",
+    "category": "分镜与节拍",
+    "status": "solidified",
+    "stages": ["Storyboard", "Higgsfield", "Review"],
+    "summary": "先定义人群密度、层次和机位，再写背景角色行为，避免 crowd shot 只靠风格词漂移。",
+    "template": "crowd density + camera placement + extras behavior + action priority",
+    "source_case_urls": ["https://ltx.io/blog/crowd-scene-generation"],
+    "notes": "适合群演、背景角色和大场面补全。"
+  },
+  {
+    "ability_id": "domain_vocabulary_prompting",
+    "name": "领域词汇提示法",
+    "category": "执行与编排",
+    "status": "solidified",
+    "stages": ["Storyboard", "Higgsfield"],
+    "summary": "优先使用行业内的场景词汇和工种词，而不是泛化形容词，提升模型对专业镜头与材质的响应。",
+    "template": "domain-specific nouns + production context + action constraint",
+    "source_case_urls": ["https://ltx.io/blog/domain-specific-prompting"],
+    "notes": "适合 VFX、动画、广告和工业场景。"
+  },
+  {
+    "ability_id": "dialogue_beat_segmentation",
+    "name": "对白节拍分段提示",
+    "category": "表演与口型",
+    "status": "solidified",
+    "stages": ["Script", "Storyboard", "Higgsfield", "Review"],
+    "summary": "对白和表演不要整段交给模型，先按停顿、情绪、动作转折拆成 beat 再提示。",
+    "template": "line intent + pause + emotional turn + gesture cue + end state",
+    "source_case_urls": ["https://ltx.io/blog/directing-dialogue-and-acting"],
+    "notes": "适合口播、对白、角色表演和情绪节奏。"
+  },
+  {
+    "ability_id": "lora_training_decision_gate",
+    "name": "LoRA 训练决策闸门",
+    "category": "模型路由",
+    "status": "solidified",
+    "stages": ["Producer", "Worldbuilding", "Keyframe"],
+    "summary": "先判断角色/风格问题能否靠 reference 和控制词解决，再决定是否值得训练 LoRA。",
+    "template": "reuse refs -> test base model -> compare drift cost -> decide LoRA or not",
+    "source_case_urls": ["https://ltx.io/blog/when-to-train-a-lora"],
+    "notes": "防止过早把训练当默认解法。"
+  },
+  {
+    "ability_id": "size_ref_scale_lock",
+    "name": "尺寸参照锁尺图",
+    "category": "控制资产",
+    "status": "solidified",
+    "stages": ["Storyboard", "Keyframe", "Higgsfield"],
+    "summary": "通过尺寸参照和比例锚点，把物体、人和空间尺度先锁死，再做运动和光影变化。",
+    "template": "scale anchor + size reference + environment relation + movement goal",
+    "source_case_urls": ["https://higgsfield.ai/blog/ai-vs-vfx"],
+    "notes": "适合特效合成、产品植入和空间比例敏感镜头。"
+  },
+  {
+    "ability_id": "foley_action_material_prompt",
+    "name": "动作-材质 Foley 提示",
+    "category": "音频驱动",
+    "status": "solidified",
+    "stages": ["Storyboard", "Higgsfield", "Delivery"],
+    "summary": "先把动作和接触材质成对绑定，再补 Foley 层，而不是只写抽象音效氛围。",
+    "template": "action + contact material + sound texture + timing",
+    "source_case_urls": ["https://ltx.io/blog/bring-silent-videos-to-life-foley-lora"],
+    "notes": "适合广告、MV 和高触感动作镜头。"
+  },
+  {
+    "ability_id": "clean_plate_negative_pack",
+    "name": "干净底板负面清单",
+    "category": "质检与返工",
+    "status": "solidified",
+    "stages": ["Storyboard", "Review", "Delivery"],
+    "summary": "需要移除人和阴影时，先定义 clean plate 目标和禁止残留物，再做修补或扩展。",
+    "template": "clean plate target + forbidden artifacts + patch region + continuity check",
+    "source_case_urls": ["https://ltx.io/blog/remove-people-and-shadows-from-video"],
+    "notes": "适合镜头清理、补背景和局部返工。"
+  },
+  {
+    "ability_id": "light_direction_ball_relight",
+    "name": "光向球单次重打光",
+    "category": "交付与后期",
+    "status": "solidified",
+    "stages": ["Keyframe", "Review", "Delivery"],
+    "summary": "先锁主光方向和受光体逻辑，再做一次性重打光，避免多轮 relight 让材质和空间关系失真。",
+    "template": "light direction + subject response + environment consistency + final pass",
+    "source_case_urls": ["https://ltx.io/blog/relight-exterior-footage-to-any-sun-direction"],
+    "notes": "适合户外镜头和统一时段感。"
+  },
+  {
+    "ability_id": "voice_anchor_config_lock",
+    "name": "声音锚点配置锁",
+    "category": "音频驱动",
+    "status": "solidified",
+    "stages": ["Producer", "Higgsfield", "Review", "Delivery"],
+    "summary": "同一角色或旁白先锁唯一 voice source 与完整声音配置，再让所有后续片段只复用该配置。",
+    "template": "single voice source + saved config + repeat reuse + explicit versioning",
+    "source_case_urls": ["https://higgsfield.ai/blog/consistent-ai-voice-across-videos"],
+    "notes": "解决系列视频声线漂移。"
+  },
+  {
+    "ability_id": "selector_before_prompt_lock",
+    "name": "控件先于提示词",
+    "category": "执行与编排",
+    "status": "solidified",
+    "stages": ["Producer", "Storyboard", "Keyframe", "Higgsfield", "Review"],
+    "summary": "先用 references 与 selector 锁时代、镜头、光线和物理规则，再让 prompt 只描述动作与事件。",
+    "template": "references -> selectors -> action prompt -> local correction",
+    "source_case_urls": ["https://higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026"],
+    "notes": "降低角色漂移和整体重抽。"
+  }
+]

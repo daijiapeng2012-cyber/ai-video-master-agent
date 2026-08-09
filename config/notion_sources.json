@@ -1,0 +1,22 @@
+{
+  "workspace": "视频大师agents",
+  "radar_database": {
+    "name": "AI 视频案例雷达库",
+    "url": "https://app.notion.com/p/e012f2dc2d154396a273c5037b0ccb4c",
+    "data_source_id": "77ec190a-b175-446d-9c57-8b5892e124ef"
+  },
+  "ability_database": {
+    "name": "AI 视频能力库",
+    "url": "https://app.notion.com/p/77ccfa4dc4fc429ca1735b28665f09c1",
+    "data_source_id": "85c1cd8b-6a1a-4829-bacd-e68eba916b3c"
+  },
+  "system_page": {
+    "name": "视频大师agents",
+    "url": "https://app.notion.com/p/3992db8f3afb80a48289d6558da679f4"
+  },
+  "notes": [
+    "系统页只保留稳定结构，不再追加日报正文。",
+    "逐案例入主库，逐能力入能力库。",
+    "创建回执不等于完成，必须 fetch-back + final query。"
+  ]
+}

@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a repository bug, broken workflow, schema issue, or incorrect knowledge entry.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is broken?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: How can this be reproduced?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - knowledge_base
+        - scripts
+        - docs
+        - GitHub workflow
+        - weekly report
+        - sync contract
+    validations:
+      required: true

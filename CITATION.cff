@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "AI Video Master Agent"
+message: "If you use this repository, please cite it using the metadata in this file."
+type: software
+license: MIT
+authors:
+  - family-names: Dai
+    given-names: Jerry
+abstract: >
+  AI Video Master Agent is an open-source knowledge-and-control repository for
+  AI video production. It structures public cases, reusable abilities, weekly
+  digests, and agent skills into a maintainable GitHub project.

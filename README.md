@@ -159,6 +159,7 @@ Generated output example:
 - [Weekly Update Workflow](./docs/en/weekly-update-workflow.md)
 - [Notion Sync Contract](./docs/en/notion-sync-contract.md)
 - [Reference Projects](./docs/en/reference-projects.md)
+- [ComfyUI Integration](./docs/en/comfyui-integration.md)
 - [Roadmap](./docs/en/roadmap.md)
 
 Chinese mirrors:
@@ -167,6 +168,7 @@ Chinese mirrors:
 - [周更工作流](./docs/zh-CN/weekly-update-workflow.md)
 - [Notion 同步合同](./docs/zh-CN/notion-sync-contract.md)
 - [参考项目](./docs/zh-CN/reference-projects.md)
+- [ComfyUI 集成](./docs/zh-CN/comfyui-integration.md)
 - [路线图](./docs/zh-CN/roadmap.md)
 
 ## Open Source

@@ -1,0 +1,227 @@
+{
+  "project": {
+    "name": "ai-video-master-agent",
+    "layer": "knowledge_and_control",
+    "intended_executor": "comfyui_or_other_execution_layer"
+  },
+  "handoff_contract": {
+    "goal": "Translate reusable AI video knowledge into execution-ready constraints",
+    "notes": [
+      "This package is not a node graph.",
+      "This package is a compact planning and constraint handoff.",
+      "Execution repos should map these fields into actual ComfyUI graphs."
+    ]
+  },
+  "abilities": [
+    {
+      "ability_id": "crowd_density_framing_prompt",
+      "name": "人群密度与机位先行",
+      "category": "分镜与节拍",
+      "status": "solidified",
+      "stages": [
+        "Storyboard",
+        "Higgsfield",
+        "Review"
+      ],
+      "summary": "先定义人群密度、层次和机位，再写背景角色行为，避免 crowd shot 只靠风格词漂移。",
+      "template": "crowd density + camera placement + extras behavior + action priority",
+      "source_case_urls": [
+        "https://ltx.io/blog/crowd-scene-generation"
+      ],
+      "notes": "适合群演、背景角色和大场面补全。"
+    },
+    {
+      "ability_id": "domain_vocabulary_prompting",
+      "name": "领域词汇提示法",
+      "category": "执行与编排",
+      "status": "solidified",
+      "stages": [
+        "Storyboard",
+        "Higgsfield"
+      ],
+      "summary": "优先使用行业内的场景词汇和工种词，而不是泛化形容词，提升模型对专业镜头与材质的响应。",
+      "template": "domain-specific nouns + production context + action constraint",
+      "source_case_urls": [
+        "https://ltx.io/blog/domain-specific-prompting"
+      ],
+      "notes": "适合 VFX、动画、广告和工业场景。"
+    },
+    {
+      "ability_id": "dialogue_beat_segmentation",
+      "name": "对白节拍分段提示",
+      "category": "表演与口型",
+      "status": "solidified",
+      "stages": [
+        "Script",
+        "Storyboard",
+        "Higgsfield",
+        "Review"
+      ],
+      "summary": "对白和表演不要整段交给模型，先按停顿、情绪、动作转折拆成 beat 再提示。",
+      "template": "line intent + pause + emotional turn + gesture cue + end state",
+      "source_case_urls": [
+        "https://ltx.io/blog/directing-dialogue-and-acting"
+      ],
+      "notes": "适合口播、对白、角色表演和情绪节奏。"
+    },
+    {
+      "ability_id": "lora_training_decision_gate",
+      "name": "LoRA 训练决策闸门",
+      "category": "模型路由",
+      "status": "solidified",
+      "stages": [
+        "Producer",
+        "Worldbuilding",
+        "Keyframe"
+      ],
+      "summary": "先判断角色/风格问题能否靠 reference 和控制词解决，再决定是否值得训练 LoRA。",
+      "template": "reuse refs -> test base model -> compare drift cost -> decide LoRA or not",
+      "source_case_urls": [
+        "https://ltx.io/blog/when-to-train-a-lora"
+      ],
+      "notes": "防止过早把训练当默认解法。"
+    },
+    {
+      "ability_id": "size_ref_scale_lock",
+      "name": "尺寸参照锁尺图",
+      "category": "控制资产",
+      "status": "solidified",
+      "stages": [
+        "Storyboard",
+        "Keyframe",
+        "Higgsfield"
+      ],
+      "summary": "通过尺寸参照和比例锚点，把物体、人和空间尺度先锁死，再做运动和光影变化。",
+      "template": "scale anchor + size reference + environment relation + movement goal",
+      "source_case_urls": [
+        "https://higgsfield.ai/blog/ai-vs-vfx"
+      ],
+      "notes": "适合特效合成、产品植入和空间比例敏感镜头。"
+    }
+  ],
+  "cases": [
+    {
+      "title": "AI vs VFX: Can Seedance 2.5 Beat VFX?",
+      "source": "Higgsfield Blog",
+      "url": "https://higgsfield.ai/blog/ai-vs-vfx",
+      "published_at": "2026-08-07",
+      "captured_date": "2026-08-08",
+      "content_types": [
+        "工作流",
+        "角色一致性",
+        "教程"
+      ],
+      "stages": [
+        "Storyboard",
+        "Keyframe",
+        "Higgsfield",
+        "Review"
+      ],
+      "credibility": "高",
+      "summary": "用官方对比场景拆解 Seedance 2.5 在尺度、质感和镜头控制上的优势与边界。",
+      "template": "用尺寸参照和合成逻辑先锁空间关系，再判断生成链是否值得替代传统 VFX。",
+      "ability_links": [
+        "size_ref_scale_lock"
+      ],
+      "evidence_boundary": "官方公开方法页；不等于全面替代 VFX 的独立第三方验证。"
+    },
+    {
+      "title": "Bring Silent Videos to Life: Foley LoRA For LTX-2.3",
+      "source": "LTX Blog",
+      "url": "https://ltx.io/blog/bring-silent-videos-to-life-foley-lora",
+      "published_at": "2026-08-04",
+      "captured_date": "2026-08-08",
+      "content_types": [
+        "工作流",
+        "音频驱动",
+        "教程"
+      ],
+      "stages": [
+        "Storyboard",
+        "Higgsfield",
+        "Delivery"
+      ],
+      "credibility": "高",
+      "summary": "把静音镜头补出动作相关的 Foley 质感，重点不在音乐而在动作与材质绑定。",
+      "template": "先定义动作与接触材质，再为镜头补足对应的声音纹理。",
+      "ability_links": [
+        "foley_action_material_prompt"
+      ],
+      "evidence_boundary": "官方公开教程；以方法和参数结构为证据，不是独立审片结论。"
+    },
+    {
+      "title": "Remove People and Shadows from Video: Clean Plate LoRA",
+      "source": "LTX Blog",
+      "url": "https://ltx.io/blog/remove-people-and-shadows-from-video",
+      "published_at": "2026-08-03",
+      "captured_date": "2026-08-08",
+      "content_types": [
+        "工作流",
+        "质检/返工",
+        "教程"
+      ],
+      "stages": [
+        "Storyboard",
+        "Review",
+        "Delivery"
+      ],
+      "credibility": "高",
+      "summary": "把干净底板作为目标，而不是把移除行人理解为普通修图任务。",
+      "template": "定义 clean plate 目标、禁留残影和阴影规则，再做局部处理。",
+      "ability_links": [
+        "clean_plate_negative_pack"
+      ],
+      "evidence_boundary": "官方公开教程；主要证明返工方法，不证明所有场景都稳定。"
+    },
+    {
+      "title": "Relight Exterior Footage to Any Sun Direction: Relight IC-LoRA For LTX-2.3",
+      "source": "LTX Blog",
+      "url": "https://ltx.io/blog/relight-exterior-footage-to-any-sun-direction",
+      "published_at": "2026-08-02",
+      "captured_date": "2026-08-08",
+      "content_types": [
+        "工作流",
+        "运镜",
+        "教程"
+      ],
+      "stages": [
+        "Keyframe",
+        "Review",
+        "Delivery"
+      ],
+      "credibility": "高",
+      "summary": "通过固定光向与受光逻辑，做更稳定的单次重打光。",
+      "template": "先定义主光方向和角色受光，再做统一 relight pass。",
+      "ability_links": [
+        "light_direction_ball_relight"
+      ],
+      "evidence_boundary": "官方公开教程；更多是光线与后期控制证据。"
+    },
+    {
+      "title": "How to Turn a Photo Into an AI Video: Step-by-Step Guide (2026)",
+      "source": "Higgsfield Blog",
+      "url": "https://higgsfield.ai/blog/photo-to-ai-video",
+      "published_at": "2026-08-04",
+      "captured_date": "2026-08-08",
+      "content_types": [
+        "工作流",
+        "教程"
+      ],
+      "stages": [
+        "Storyboard",
+        "Keyframe",
+        "Higgsfield"
+      ],
+      "credibility": "中高",
+      "summary": "从单图入手生成视频，核心在首帧和动作方向的结构化约束。",
+      "template": "先锁首帧，再描述动作方向和结束状态。",
+      "ability_links": [],
+      "evidence_boundary": "主要依据公开页面元数据和 FAQ；正文提取可靠性弱于其他案例。"
+    }
+  ],
+  "constraints": {
+    "public_evidence_only": true,
+    "do_not_claim_generation_without_execution": true,
+    "separate_knowledge_from_runtime_graphs": true
+  }
+}
